@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct Task {
+    let text: String
+    let state: Bool
+}
