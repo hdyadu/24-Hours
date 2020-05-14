@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671FB399246C850C00055FC9 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671FB398246C850C00055FC9 /* Task.swift */; };
 		67DA577E2457202B00FFF36D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA577D2457202B00FFF36D /* AppDelegate.swift */; };
 		67DA57802457202B00FFF36D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA577F2457202B00FFF36D /* SceneDelegate.swift */; };
 		67DA57822457202B00FFF36D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA57812457202B00FFF36D /* ViewController.swift */; };
@@ -16,7 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		67DA577A2457202A00FFF36D /* 24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 24.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		671FB398246C850C00055FC9 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		67DA577A2457202A00FFF36D /* 24 Hours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "24 Hours.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67DA577D2457202B00FFF36D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67DA577F2457202B00FFF36D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		67DA57812457202B00FFF36D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,10 +39,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		671FB395246C84C400055FC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				67DA57832457202B00FFF36D /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		671FB396246C84CB00055FC9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				67DA57812457202B00FFF36D /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		671FB397246C84D800055FC9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				671FB398246C850C00055FC9 /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		67DA57712457202A00FFF36D = {
 			isa = PBXGroup;
 			children = (
-				67DA577C2457202B00FFF36D /* 24 */,
+				67DA577C2457202B00FFF36D /* 24 Hours */,
 				67DA577B2457202A00FFF36D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +74,32 @@
 		67DA577B2457202A00FFF36D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				67DA577A2457202A00FFF36D /* 24.app */,
+				67DA577A2457202A00FFF36D /* 24 Hours.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		67DA577C2457202B00FFF36D /* 24 */ = {
+		67DA577C2457202B00FFF36D /* 24 Hours */ = {
 			isa = PBXGroup;
 			children = (
 				67DA577D2457202B00FFF36D /* AppDelegate.swift */,
 				67DA577F2457202B00FFF36D /* SceneDelegate.swift */,
-				67DA57812457202B00FFF36D /* ViewController.swift */,
-				67DA57832457202B00FFF36D /* Main.storyboard */,
+				671FB397246C84D800055FC9 /* Model */,
+				671FB395246C84C400055FC9 /* View */,
+				671FB396246C84CB00055FC9 /* Controller */,
 				67DA57862457202F00FFF36D /* Assets.xcassets */,
 				67DA57882457202F00FFF36D /* LaunchScreen.storyboard */,
 				67DA578B2457202F00FFF36D /* Info.plist */,
 			);
-			path = 24;
+			path = "24 Hours";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		67DA57792457202A00FFF36D /* 24 */ = {
+		67DA57792457202A00FFF36D /* 24 Hours */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 67DA578E2457202F00FFF36D /* Build configuration list for PBXNativeTarget "24" */;
+			buildConfigurationList = 67DA578E2457202F00FFF36D /* Build configuration list for PBXNativeTarget "24 Hours" */;
 			buildPhases = (
 				67DA57762457202A00FFF36D /* Sources */,
 				67DA57772457202A00FFF36D /* Frameworks */,
@@ -82,9 +109,9 @@
 			);
 			dependencies = (
 			);
-			name = 24;
+			name = "24 Hours";
 			productName = 24;
-			productReference = 67DA577A2457202A00FFF36D /* 24.app */;
+			productReference = 67DA577A2457202A00FFF36D /* 24 Hours.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 67DA57752457202A00FFF36D /* Build configuration list for PBXProject "24" */;
+			buildConfigurationList = 67DA57752457202A00FFF36D /* Build configuration list for PBXProject "24 Hours" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				67DA57792457202A00FFF36D /* 24 */,
+				67DA57792457202A00FFF36D /* 24 Hours */,
 			);
 		};
 /* End PBXProject section */
@@ -138,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				671FB399246C850C00055FC9 /* Task.swift in Sources */,
 				67DA57822457202B00FFF36D /* ViewController.swift in Sources */,
 				67DA577E2457202B00FFF36D /* AppDelegate.swift in Sources */,
 				67DA57802457202B00FFF36D /* SceneDelegate.swift in Sources */,
@@ -286,12 +314,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XB8P7UXMLK;
-				INFOPLIST_FILE = 24/Info.plist;
+				INFOPLIST_FILE = "24 Hours/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hdyadu.-4";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hdyadu.24-Hours";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,12 +333,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XB8P7UXMLK;
-				INFOPLIST_FILE = 24/Info.plist;
+				INFOPLIST_FILE = "24 Hours/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hdyadu.-4";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hdyadu.24-Hours";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,7 +349,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		67DA57752457202A00FFF36D /* Build configuration list for PBXProject "24" */ = {
+		67DA57752457202A00FFF36D /* Build configuration list for PBXProject "24 Hours" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67DA578C2457202F00FFF36D /* Debug */,
@@ -328,7 +358,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		67DA578E2457202F00FFF36D /* Build configuration list for PBXNativeTarget "24" */ = {
+		67DA578E2457202F00FFF36D /* Build configuration list for PBXNativeTarget "24 Hours" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67DA578F2457202F00FFF36D /* Debug */,
