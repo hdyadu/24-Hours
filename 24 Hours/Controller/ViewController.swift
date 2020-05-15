@@ -32,14 +32,19 @@ class ViewController: UITableViewController {
         alert.addTextField { (UITextField) in
             self.textField = UITextField
         }
-        let alertAction = UIAlertAction(title: "Add", style: .default) { (text) in
+        let add = UIAlertAction(title: "Add", style: .default) { (text) in
             if let text = self.textField.text {
-                self.tasksArray.append(text)
-                self.defaults.set(self.tasksArray, forKey: "tasksArray")
-                self.tableView.reloadData()
+                let trimmedText = text.trimmingCharacters(in: .whitespaces)
+                if !(trimmedText.trimmingCharacters(in: .whitespaces).isEmpty) {
+                    self.tasksArray.append(trimmedText)
+                    self.defaults.set(self.tasksArray, forKey: "tasksArray")
+                    self.tableView.reloadData()
+                }
             }
         }
-        alert.addAction(alertAction)
+        alert.addAction(add)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
         present(alert, animated: true, completion: nil)
     }
     //MARK: - Data Source
@@ -105,4 +110,5 @@ extension ViewController: UITableViewDropDelegate {
 
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
     }
+    
 }
