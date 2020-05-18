@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sxv-wb-w9B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfX-KL-dvS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -9,13 +9,13 @@
         <!--Today-->
         <scene sceneID="W8d-Hk-FC6">
             <objects>
-                <tableViewController id="DWb-uS-B6R" customClass="ViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="DWb-uS-B6R" customClass="TodayViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QYj-TI-20g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="taskCell" id="4QB-Rh-OVX">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="taskCell" id="4QB-Rh-OVX">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4QB-Rh-OVX" id="xB6-Rv-0AW">
@@ -29,40 +29,122 @@
                             <outlet property="delegate" destination="DWb-uS-B6R" id="yZd-9b-Hjw"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Today" id="cMn-yA-YCb">
-                        <barButtonItem key="rightBarButtonItem" title="addButton" image="plus" catalog="system" id="c6c-sH-QzS">
+                        <barButtonItem key="rightBarButtonItem" title="addTaskButton" image="plus" catalog="system" id="c6c-sH-QzS" userLabel="addTaskButton">
                             <connections>
-                                <action selector="plusButton:" destination="DWb-uS-B6R" id="UYA-tP-dOM"/>
+                                <action selector="addTaskPressed:" destination="DWb-uS-B6R" id="UaC-sU-1kq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="QYj-TI-20g" id="Tbz-o6-rSR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Km-BS-zB8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-332" y="-34"/>
+            <point key="canvasLocation" x="1357.9710144927537" y="-403.125"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="kOL-70-Qr2">
+        <!--Title-->
+        <scene sceneID="hOP-Il-ptx">
             <objects>
-                <navigationController id="Sxv-wb-w9B" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KyR-uf-ZCV">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cfX-KL-dvS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="ee8-uv-tLN"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D3V-Es-Fz7">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="WBm-Yu-HMn" kind="relationship" relationship="viewControllers" id="BcD-wI-VDc"/>
+                        <segue destination="ZH4-x9-aD7" kind="relationship" relationship="viewControllers" id="1vJ-lC-aXj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XpR-7x-b7A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-526.08695652173913" y="-34.151785714285715"/>
+        </scene>
+        <!--Goals-->
+        <scene sceneID="8GM-aw-gvE">
+            <objects>
+                <tableViewController id="xX0-Ws-awh" customClass="GoalViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FAV-wT-rha">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="goalCell" id="fu8-Gk-CL1">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fu8-Gk-CL1" id="e1o-pG-hmV">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xX0-Ws-awh" id="MDi-bn-B8B"/>
+                            <outlet property="delegate" destination="xX0-Ws-awh" id="SCr-Ig-JJY"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Goals" id="bpO-MJ-Hjt">
+                        <barButtonItem key="rightBarButtonItem" title="addGoalButton" image="plus" catalog="system" id="faM-Lx-oZv" userLabel="addGoalButton">
+                            <connections>
+                                <action selector="addGoalPressed:" destination="xX0-Ws-awh" id="DC8-iz-W63"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OfZ-IF-ngc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357.9710144927537" y="363.61607142857139"/>
+        </scene>
+        <!--Today-->
+        <scene sceneID="Fgh-Tp-i1w">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WBm-Yu-HMn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Today" image="list.bullet" catalog="system" id="osb-Rj-DKT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k2n-aQ-gLh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DWb-uS-B6R" kind="relationship" relationship="rootViewController" id="zqb-wx-aat"/>
+                        <segue destination="DWb-uS-B6R" kind="relationship" relationship="rootViewController" id="zhY-lx-XVm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bea-ls-IJg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Xm-vF-DO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1230" y="-34"/>
+            <point key="canvasLocation" x="447.82608695652175" y="-403.125"/>
+        </scene>
+        <!--Goals-->
+        <scene sceneID="EIQ-ho-Bzq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZH4-x9-aD7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Goals" image="calendar" catalog="system" id="NK0-eo-Khg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y6v-pI-2PF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xX0-Ws-awh" kind="relationship" relationship="rootViewController" id="VOb-Rj-xtf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ShD-uX-Qym" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="447.82608695652175" y="363.61607142857139"/>
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

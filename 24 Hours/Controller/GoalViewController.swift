@@ -1,16 +1,16 @@
 //
-//  ViewController.swift
-//  24
+//  GoalViewController.swift
+//  24 Hours
 //
-//  Created by Harsimranjit Dhaliwal on 2020-04-27.
+//  Created by Harsimranjit Dhaliwal on 2020-05-15.
 //  Copyright © 2020 Harsimranjit Dhaliwal. All rights reserved.
 //
 
 import UIKit
 
-class TodayViewController: UITableViewController {
+class GoalViewController: UITableViewController {
     
-    var tasksArray: [String] = []
+    var goalsArray: [String] = []
     var textField = UITextField()
     let defaults = UserDefaults.standard
     var dragInitialIndexPath: IndexPath?
@@ -18,8 +18,8 @@ class TodayViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let items = defaults.array(forKey: "tasksArray") as? [String] {
-            tasksArray = items
+        if let items = defaults.array(forKey: "goalsArray") as? [String] {
+            goalsArray = items
         }
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
@@ -27,35 +27,38 @@ class TodayViewController: UITableViewController {
     }
     //MARK: - User Input
     
-    @IBAction func plusButton(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add task", message: "", preferredStyle: .alert)
-        alert.addTextField { (UITextField) in
-            self.textField = UITextField
-        }
-        let add = UIAlertAction(title: "Add", style: .default) { (text) in
-            if let text = self.textField.text {
-                let trimmedText = text.trimmingCharacters(in: .whitespaces)
-                if !(trimmedText.trimmingCharacters(in: .whitespaces).isEmpty) {
-                    self.tasksArray.append(trimmedText)
-                    self.defaults.set(self.tasksArray, forKey: "tasksArray")
-                    self.tableView.reloadData()
+    @IBAction func addGoalPressed(_ sender: UIBarButtonItem) {
+        
+            let alert = UIAlertController(title: "Add goal", message: "", preferredStyle: .alert)
+            alert.addTextField { (UITextField) in
+                self.textField = UITextField
+            }
+            let add = UIAlertAction(title: "Add", style: .default) { (text) in
+                if let text = self.textField.text {
+                    let trimmedText = text.trimmingCharacters(in: .whitespaces)
+                    if !(trimmedText.trimmingCharacters(in: .whitespaces).isEmpty) {
+                        self.goalsArray.append(trimmedText)
+                        self.defaults.set(self.goalsArray, forKey: "goalsArray")
+                        self.tableView.reloadData()
+                    }
                 }
             }
-        }
-        alert.addAction(add)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            alert.addAction(add)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            
+            present(alert, animated: true, completion: nil)
         
-        present(alert, animated: true, completion: nil)
     }
+
     //MARK: - Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasksArray.count
+        return goalsArray.count
     }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell")
-        cell?.textLabel?.text = tasksArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "goalCell")
+        cell?.textLabel?.text = goalsArray[indexPath.row]
         return cell!
     }
     
@@ -75,8 +78,8 @@ class TodayViewController: UITableViewController {
     // Swipe left to delete feature
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {_,_,_ in
-            self.tasksArray.remove(at: indexPath.row)
-            self.defaults.set(self.tasksArray, forKey: "tasksArray")
+            self.goalsArray.remove(at: indexPath.row)
+            self.defaults.set(self.goalsArray, forKey: "goalsArray")
             self.tableView.reloadData()
         })
         let delete = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -85,20 +88,20 @@ class TodayViewController: UITableViewController {
     
     // LongPress to Reorder feature
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let task = tasksArray[sourceIndexPath.row]
-        tasksArray.remove(at: sourceIndexPath.row)
-        tasksArray.insert(task, at: destinationIndexPath.row)
-        defaults.set(self.tasksArray, forKey: "tasksArray")
+        let task = goalsArray[sourceIndexPath.row]
+        goalsArray.remove(at: sourceIndexPath.row)
+        goalsArray.insert(task, at: destinationIndexPath.row)
+        defaults.set(self.goalsArray, forKey: "goalsArray")
     }
 }
 
-extension itemsViewController: UITableViewDragDelegate {
+extension GoalViewController: UITableViewDragDelegate {
 func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         return [UIDragItem(itemProvider: NSItemProvider())]
     }
 }
 
-extension itemsViewController: UITableViewDropDelegate {
+extension GoalViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
 
         if session.localDragSession != nil { // Drag originated from the same app.

@@ -27,7 +27,7 @@ class TodayViewController: UITableViewController {
     }
     //MARK: - User Input
     
-    @IBAction func plusButton(_ sender: UIBarButtonItem) {
+    @IBAction func addTaskPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add task", message: "", preferredStyle: .alert)
         alert.addTextField { (UITextField) in
             self.textField = UITextField
@@ -92,13 +92,13 @@ class TodayViewController: UITableViewController {
     }
 }
 
-extension itemsViewController: UITableViewDragDelegate {
+extension TodayViewController: UITableViewDragDelegate {
 func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         return [UIDragItem(itemProvider: NSItemProvider())]
     }
 }
 
-extension itemsViewController: UITableViewDropDelegate {
+extension TodayViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
 
         if session.localDragSession != nil { // Drag originated from the same app.
