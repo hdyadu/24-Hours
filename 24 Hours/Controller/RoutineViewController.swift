@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TodayViewController: UITableViewController {
+class RoutineViewController: UITableViewController {
     
-    var tasksArray: [String] = []
+    var routineArray: [String] = []
     var textField = UITextField()
     let defaults = UserDefaults.standard
     var dragInitialIndexPath: IndexPath?
@@ -18,8 +18,8 @@ class TodayViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let items = defaults.array(forKey: "tasksArray") as? [String] {
-            tasksArray = items
+        if let items = defaults.array(forKey: "routineArray") as? [String] {
+            routineArray = items
         }
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
@@ -36,8 +36,8 @@ class TodayViewController: UITableViewController {
             if let text = self.textField.text {
                 let trimmedText = text.trimmingCharacters(in: .whitespaces)
                 if !(trimmedText.trimmingCharacters(in: .whitespaces).isEmpty) {
-                    self.tasksArray.append(trimmedText)
-                    self.defaults.set(self.tasksArray, forKey: "tasksArray")
+                    self.routineArray.append(trimmedText)
+                    self.defaults.set(self.routineArray, forKey: "routineArray")
                     self.tableView.reloadData()
                 }
             }
@@ -50,12 +50,12 @@ class TodayViewController: UITableViewController {
     //MARK: - Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasksArray.count
+        return routineArray.count
     }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell")
-        cell?.textLabel?.text = tasksArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "routineCell")
+        cell?.textLabel?.text = routineArray[indexPath.row]
         return cell!
     }
     
@@ -76,7 +76,7 @@ class TodayViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {_,_,_ in
             self.tasksArray.remove(at: indexPath.row)
-            self.defaults.set(self.tasksArray, forKey: "tasksArray")
+            self.defaults.set(self.routineArray, forKey: "routineArray")
             self.tableView.reloadData()
         })
         let delete = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -85,20 +85,20 @@ class TodayViewController: UITableViewController {
     
     // LongPress to Reorder feature
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let task = tasksArray[sourceIndexPath.row]
-        tasksArray.remove(at: sourceIndexPath.row)
-        tasksArray.insert(task, at: destinationIndexPath.row)
-        defaults.set(self.tasksArray, forKey: "tasksArray")
+        let routine = routineArray[sourceIndexPath.row]
+        routineArray.remove(at: sourceIndexPath.row)
+        routineArray.insert(routine, at: destinationIndexPath.row)
+        defaults.set(self.routineArray, forKey: "routineArray")
     }
 }
 
-extension TodayViewController: UITableViewDragDelegate {
+extension RoutineViewController: UITableViewDragDelegate {
 func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         return [UIDragItem(itemProvider: NSItemProvider())]
     }
 }
 
-extension TodayViewController: UITableViewDropDelegate {
+extension RoutineViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
 
         if session.localDragSession != nil { // Drag originated from the same app.
