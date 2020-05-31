@@ -47,6 +47,7 @@ class TaskViewController: UITableViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
     //MARK: - Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,18 +61,7 @@ class TaskViewController: UITableViewController {
     }
     
     //MARK: - Table Features
-    // Check mark feature
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-    }
+    
     // Swipe left to delete feature
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {_,_,_ in
@@ -92,13 +82,13 @@ class TaskViewController: UITableViewController {
     }
 }
 
-extension RoutineViewController: UITableViewDragDelegate {
+extension TaskViewController: UITableViewDragDelegate {
 func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         return [UIDragItem(itemProvider: NSItemProvider())]
     }
 }
 
-extension RoutineViewController: UITableViewDropDelegate {
+extension TaskViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
 
         if session.localDragSession != nil { // Drag originated from the same app.
@@ -112,3 +102,4 @@ extension RoutineViewController: UITableViewDropDelegate {
     }
     
 }
+

@@ -7,38 +7,43 @@
 //
 
 import UIKit
+import CoreData
 
 class RoutineViewController: UITableViewController {
     
-    var routineArray: [String] = []
+    var routineArray = [RoutineTask]()
     var textField = UITextField()
     let defaults = UserDefaults.standard
     var dragInitialIndexPath: IndexPath?
     var dragCellSnapshot: UIView?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let items = defaults.array(forKey: "routineArray") as? [String] {
-            routineArray = items
-        }
+        loadItems()
+        // Switching the routine tasks from userdefaults to new array as routine task from core data entity
+        // and emptying user defaults for key routineArray
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
         tableView.dropDelegate = self
     }
     //MARK: - User Input
-    
-    @IBAction func addTaskPressed(_ sender: UIBarButtonItem) {
+     
+    @IBAction func addRoutinePressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add task", message: "", preferredStyle: .alert)
         alert.addTextField { (UITextField) in
             self.textField = UITextField
         }
         let add = UIAlertAction(title: "Add", style: .default) { (text) in
+            
+            let newRoutineTask = RoutineTask(context: self.context)
             if let text = self.textField.text {
                 let trimmedText = text.trimmingCharacters(in: .whitespaces)
                 if !(trimmedText.trimmingCharacters(in: .whitespaces).isEmpty) {
-                    self.routineArray.append(trimmedText)
-                    self.defaults.set(self.routineArray, forKey: "routineArray")
-                    self.tableView.reloadData()
+                    newRoutineTask.title = trimmedText
+                    newRoutineTask.done = false
+                    self.routineArray.append(newRoutineTask)
+                    self.saveItems()
                 }
             }
         }
@@ -54,30 +59,28 @@ class RoutineViewController: UITableViewController {
     }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "routineCell")
-        cell?.textLabel?.text = routineArray[indexPath.row]
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "routineCell", for: indexPath)
+        cell.textLabel?.text = routineArray[indexPath.row].title
+        cell.accessoryType = routineArray[indexPath.row].done ? .checkmark : .none
+        return cell
     }
     
     //MARK: - Table Features
     // Check mark feature
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-        
         tableView.deselectRow(at: indexPath, animated: true)
+        routineArray[indexPath.row].done = !routineArray[indexPath.row].done
+        
+        tableView.reloadData()
+        
         
     }
     // Swipe left to delete feature
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {_,_,_ in
-            self.tasksArray.remove(at: indexPath.row)
-            self.defaults.set(self.routineArray, forKey: "routineArray")
-            self.tableView.reloadData()
+            self.context.delete(self.routineArray[indexPath.row])
+            self.routineArray.remove(at: indexPath.row)
+            self.saveItems()
         })
         let delete = UISwipeActionsConfiguration(actions: [deleteAction])
         return delete
@@ -88,7 +91,26 @@ class RoutineViewController: UITableViewController {
         let routine = routineArray[sourceIndexPath.row]
         routineArray.remove(at: sourceIndexPath.row)
         routineArray.insert(routine, at: destinationIndexPath.row)
-        defaults.set(self.routineArray, forKey: "routineArray")
+        saveItems()
+    }
+    
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        tableView.reloadData()
+    }
+    
+    func loadItems() {
+        let request: NSFetchRequest<RoutineTask> = RoutineTask.fetchRequest()
+        do {
+            routineArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from the context \(error)")
+        }
+        
     }
 }
 

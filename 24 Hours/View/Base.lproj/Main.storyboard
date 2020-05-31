@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Today-->
+        <!--Routine-->
         <scene sceneID="W8d-Hk-FC6">
             <objects>
                 <tableViewController id="DWb-uS-B6R" customClass="RoutineViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,10 +30,10 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Today" id="cMn-yA-YCb">
-                        <barButtonItem key="rightBarButtonItem" title="addTaskButton" image="plus" catalog="system" id="c6c-sH-QzS" userLabel="addTaskButton">
+                    <navigationItem key="navigationItem" title="Routine" id="cMn-yA-YCb">
+                        <barButtonItem key="rightBarButtonItem" title="addRoutineButton" image="plus" catalog="system" id="c6c-sH-QzS">
                             <connections>
-                                <action selector="addTaskPressed:" destination="DWb-uS-B6R" id="UaC-sU-1kq"/>
+                                <action selector="addRoutinePressed:" destination="DWb-uS-B6R" id="UaC-sU-1kq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,11 +76,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="goalCell" id="fu8-Gk-CL1">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="goalCell" id="fu8-Gk-CL1">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fu8-Gk-CL1" id="e1o-pG-hmV">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="1357.9710144927537" y="363.61607142857139"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Tasks-->
         <scene sceneID="UgQ-yZ-ZEK">
             <objects>
                 <tableViewController id="eif-0A-ZH7" customClass="TaskViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
@@ -113,7 +113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="kTW-bb-80F">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskCell" id="kTW-bb-80F">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kTW-bb-80F" id="9qB-1C-dJF">
@@ -127,7 +127,13 @@
                             <outlet property="delegate" destination="eif-0A-ZH7" id="5LW-hL-axI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Oru-nw-5Xn"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="Oru-nw-5Xn">
+                        <barButtonItem key="rightBarButtonItem" title="addTaskButton" image="plus" catalog="system" id="mrt-9f-kmm" userLabel="addTaskButton">
+                            <connections>
+                                <action selector="addTaskPressed:" destination="eif-0A-ZH7" id="qMZ-eW-FuZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lCz-QJ-oHK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,11 +157,11 @@
             </objects>
             <point key="canvasLocation" x="2359" y="-34"/>
         </scene>
-        <!--Today-->
+        <!--Routine-->
         <scene sceneID="Fgh-Tp-i1w">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WBm-Yu-HMn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Today" image="list.bullet" catalog="system" id="osb-Rj-DKT"/>
+                    <tabBarItem key="tabBarItem" title="Routine" image="list.bullet" catalog="system" id="osb-Rj-DKT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k2n-aQ-gLh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
