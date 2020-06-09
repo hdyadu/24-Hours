@@ -7,25 +7,49 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
+
+class Routine: Object {
+    @objc dynamic var id: String = UUID().uuidString
+    @objc dynamic var title: String = ""
+    @objc dynamic var done: Bool = false
+}
+
+class Routines: Object {
+    @objc dynamic var id: Int = 0
+    let routines = List<Routine>()
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+}
 
 class RoutineViewController: UITableViewController {
     
-    var routineArray = [RoutineTask]()
     var textField = UITextField()
-    let defaults = UserDefaults.standard
     var dragInitialIndexPath: IndexPath?
     var dragCellSnapshot: UIView?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let realm = try! Realm()
+    
+    var routines = RealmSwift.List<Routine>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadItems()
-        // Switching the routine tasks from userdefaults to new array as routine task from core data entity
-        // and emptying user defaults for key routineArray
+        
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
         tableView.dropDelegate = self
+        
+        //Initialize database
+        
+        var routineData = realm.object(ofType: Routines.self, forPrimaryKey: 0)
+        if routineData == nil {
+            routineData = try! realm.write {
+                realm.create(Routines.self, value: [])
+            }
+        }
+        routines = routineData!.routines
     }
     //MARK: - User Input
      
@@ -35,15 +59,17 @@ class RoutineViewController: UITableViewController {
             self.textField = UITextField
         }
         let add = UIAlertAction(title: "Add", style: .default) { (text) in
-            
-            let newRoutineTask = RoutineTask(context: self.context)
             if let text = self.textField.text {
                 let trimmedText = text.trimmingCharacters(in: .whitespaces)
                 if !(trimmedText.trimmingCharacters(in: .whitespaces).isEmpty) {
-                    newRoutineTask.title = trimmedText
-                    newRoutineTask.done = false
-                    self.routineArray.append(newRoutineTask)
-                    self.saveItems()
+                    let newRoutine = Routine()
+                    newRoutine.title = trimmedText
+                    newRoutine.done = false
+                    
+                    try! self.realm.write {
+                        self.routines.append(newRoutine)
+                    }
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -55,13 +81,13 @@ class RoutineViewController: UITableViewController {
     //MARK: - Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routineArray.count
+        return routines.count
     }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "routineCell", for: indexPath)
-        cell.textLabel?.text = routineArray[indexPath.row].title
-        cell.accessoryType = routineArray[indexPath.row].done ? .checkmark : .none
+        cell.textLabel?.text = routines[indexPath.row].title
+        cell.accessoryType = routines[indexPath.row].done ? .checkmark : .none
         return cell
     }
     
@@ -69,18 +95,21 @@ class RoutineViewController: UITableViewController {
     // Check mark feature
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        routineArray[indexPath.row].done = !routineArray[indexPath.row].done
+        
+        let routine = routines[indexPath.row]
+        
+        try! realm.write {
+            routine.done = !routine.done
+        }
         
         tableView.reloadData()
-        
-        
     }
     // Swipe left to delete feature
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {_,_,_ in
-            self.context.delete(self.routineArray[indexPath.row])
-            self.routineArray.remove(at: indexPath.row)
-            self.saveItems()
+            try! self.routines.realm?.write {
+                self.routines.remove(at: indexPath.row)
+            }
         })
         let delete = UISwipeActionsConfiguration(actions: [deleteAction])
         return delete
@@ -88,29 +117,9 @@ class RoutineViewController: UITableViewController {
     
     // LongPress to Reorder feature
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let routine = routineArray[sourceIndexPath.row]
-        routineArray.remove(at: sourceIndexPath.row)
-        routineArray.insert(routine, at: destinationIndexPath.row)
-        saveItems()
-    }
-    
-    func saveItems() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
+        try! routines.realm?.write {
+            routines.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
         }
-        tableView.reloadData()
-    }
-    
-    func loadItems() {
-        let request: NSFetchRequest<RoutineTask> = RoutineTask.fetchRequest()
-        do {
-            routineArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data from the context \(error)")
-        }
-        
     }
 }
 
@@ -126,7 +135,6 @@ extension RoutineViewController: UITableViewDropDelegate {
         if session.localDragSession != nil { // Drag originated from the same app.
             return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
-
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
     }
 
