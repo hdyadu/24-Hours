@@ -10,10 +10,10 @@
         <scene sceneID="W8d-Hk-FC6">
             <objects>
                 <tableViewController id="DWb-uS-B6R" customClass="RoutineViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QYj-TI-20g">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QYj-TI-20g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="routineCell" id="4QB-Rh-OVX">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -22,6 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.67843137254901964" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -30,7 +31,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Routine" id="cMn-yA-YCb">
+                    <navigationItem key="navigationItem" title="Routine" largeTitleDisplayMode="always" id="cMn-yA-YCb">
                         <barButtonItem key="rightBarButtonItem" title="addRoutineButton" image="plus" catalog="system" id="c6c-sH-QzS">
                             <connections>
                                 <action selector="addRoutinePressed:" destination="DWb-uS-B6R" id="UaC-sU-1kq"/>
@@ -52,10 +53,11 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cfX-KL-dvS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="ee8-uv-tLN"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D3V-Es-Fz7">
+                    <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D3V-Es-Fz7">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="WBm-Yu-HMn" kind="relationship" relationship="viewControllers" id="BcD-wI-VDc"/>
@@ -71,10 +73,10 @@
         <scene sceneID="8GM-aw-gvE">
             <objects>
                 <tableViewController id="xX0-Ws-awh" customClass="GoalViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FAV-wT-rha">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FAV-wT-rha">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="goalCell" id="fu8-Gk-CL1">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -83,6 +85,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.67843137254901964" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -91,7 +94,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Goals" id="bpO-MJ-Hjt">
+                    <navigationItem key="navigationItem" title="Goals" largeTitleDisplayMode="always" id="bpO-MJ-Hjt">
                         <barButtonItem key="rightBarButtonItem" title="addGoalButton" image="plus" catalog="system" id="faM-Lx-oZv" userLabel="addGoalButton">
                             <connections>
                                 <action selector="addGoalPressed:" destination="xX0-Ws-awh" id="DC8-iz-W63"/>
@@ -108,10 +111,10 @@
         <scene sceneID="UgQ-yZ-ZEK">
             <objects>
                 <tableViewController id="eif-0A-ZH7" customClass="TaskViewController" customModule="_4_Hours" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZrE-p1-L5d">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZrE-p1-L5d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="kTW-bb-80F">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -120,6 +123,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.67843137254901964" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -127,7 +131,7 @@
                             <outlet property="delegate" destination="eif-0A-ZH7" id="5LW-hL-axI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tasks" id="Oru-nw-5Xn">
+                    <navigationItem key="navigationItem" title="Tasks" largeTitleDisplayMode="always" id="Oru-nw-5Xn">
                         <barButtonItem key="rightBarButtonItem" title="addTaskButton" image="plus" catalog="system" id="mrt-9f-kmm" userLabel="addTaskButton">
                             <connections>
                                 <action selector="addTaskPressed:" destination="eif-0A-ZH7" id="qMZ-eW-FuZ"/>
@@ -145,9 +149,10 @@
                 <navigationController id="9lg-vO-IEP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Tasks" image="list.number" catalog="system" id="ybe-Ip-afi"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OK5-yk-K6f">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="OK5-yk-K6f">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="eif-0A-ZH7" kind="relationship" relationship="rootViewController" id="cj8-Cc-wVm"/>
@@ -163,9 +168,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WBm-Yu-HMn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Routine" image="list.bullet" catalog="system" id="osb-Rj-DKT"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k2n-aQ-gLh">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="k2n-aQ-gLh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -182,9 +188,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZH4-x9-aD7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Goals" image="calendar" catalog="system" id="NK0-eo-Khg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y6v-pI-2PF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="y6v-pI-2PF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.67843137249999996" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

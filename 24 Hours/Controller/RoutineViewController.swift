@@ -110,6 +110,7 @@ class RoutineViewController: UITableViewController {
             try! self.routines.realm?.write {
                 self.routines.remove(at: indexPath.row)
             }
+            self.tableView.reloadData()
         })
         let delete = UISwipeActionsConfiguration(actions: [deleteAction])
         return delete
